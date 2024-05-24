@@ -379,6 +379,7 @@ class ChangelogConfig:
     sections: Mapping[str, str]
     output_formats: set[TextFormat]
     add_plugin_period: bool
+    changelog_semantic_versioning_sort: bool
 
     def __init__(
         self,
@@ -425,6 +426,7 @@ class ChangelogConfig:
             "trivial" if has_trivial_section_by_default else None,
         )
         self.sanitize_changelog = self.config.get("sanitize_changelog", False)
+        self.changelog_semantic_versioning_sort = self.config.get("changelog_semantic_versioning_sort", False)
         always_refresh = self.config.get(
             "always_refresh", self.changes_format == "classic"
         )
@@ -517,6 +519,7 @@ class ChangelogConfig:
             "trivial_section_name": self.trivial_section_name,
             "ignore_other_fragment_extensions": self.ignore_other_fragment_extensions,
             "sanitize_changelog": self.sanitize_changelog,
+            "changelog_semantic_versioning_sort": self.changelog_semantic_versioning_sort,
             "add_plugin_period": self.add_plugin_period,
         }
         if not self.is_collection:
@@ -596,6 +599,7 @@ class ChangelogConfig:
             "use_fqcn": True,
             "ignore_other_fragment_extensions": True,
             "sanitize_changelog": True,
+            "changelog_semantic_versioning_sort": False,
             "add_plugin_period": True,
         }
         if title is not None:

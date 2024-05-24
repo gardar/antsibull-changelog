@@ -156,7 +156,7 @@ class ChangesBase(metaclass=abc.ABCMeta):
         """
         self.sort()
         self.data["ancestor"] = self.ancestor
-        store_yaml(self.path, self.data)
+        store_yaml(self.path, self.data, self.config.changelog_semantic_versioning_sort)
 
     def add_release(
         self,
@@ -698,7 +698,17 @@ class ChangesData(ChangesBase):
     def sort(self) -> None:
         """
         Sort change metadata in place.
+        Optionally sorts by semantic version.
         """
+        if self.config.changelog_semantic_versioning_sort:
+            self.data["releases"] = dict(
+                sorted(
+                    self.data["releases"].items(),
+                    key=lambda t: [int(v) for v in t[0].split(".")],
+                    reverse=True,
+                ),
+            )
+
         for _, config in self.data["releases"].items():
             if "modules" in config:
                 config["modules"] = sorted(

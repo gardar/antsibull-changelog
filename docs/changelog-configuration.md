@@ -255,6 +255,13 @@ The default is `["rst"]`.
 A list of output formats to write the changelog as. Supported formats
 are `rst` for ReStructuredText and `md` for MarkDown.
 
+### `changelog_semantic_versioning_sort`
+
+The default is `false`.
+
+When set to `true` the changelog.yaml entries will be sorted
+by semantic versioninc.
+
 ## Deprecated options
 
 ### `new_plugins_after_name` (string)
