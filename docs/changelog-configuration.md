@@ -255,12 +255,19 @@ The default is `["rst"]`.
 A list of output formats to write the changelog as. Supported formats
 are `rst` for ReStructuredText and `md` for MarkDown.
 
-### `changelog_nice_yaml`(boolean)`
+### `changelog_nice_yaml` (boolean)
 
 The default is `false`.
 
 When set to `true` the changelog.yaml format will be written with nice yaml
 format that's compatible with `ansible-lint`default rules.
+
+### `changelog_semantic_versioning_sort` (boolean)
+
+The default is `false`.
+
+When set to `true` the changelog.yaml entries will be sorted
+by semantic version.
 
 ## Deprecated options
 
